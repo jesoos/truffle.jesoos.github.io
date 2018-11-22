@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/img/favicons/favicon.ico">
+
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Truffle Suite">
+    <link rel="icon" sizes="192x192" href="/img/favicons/chrome-touch-icon-192x192.png">
+
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Truffle Suite">
+    <link rel="apple-touch-icon" href="/img/favicons/apple-touch-icon.png">
+
+    <!-- Tile icon for Win8/10 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="img/favicons/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#3372DF">
+
+    <!-- Facebook OpenGraph -->
+    <meta property="og:site_name" content="Truffle Suite" />
+    <meta property="og:description" content="The Truffle suite of tools make dapp development easier and more consistent." />
+    <meta property="og:title" content="Truffle Suite | Documentation | Truffle | Debugging on IDE" />
+    <meta property="og:url" content="https://trufflesuite.com/docs/truffle/testing/debugging-on-i" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image" content="https://truffleframework.com/img/favicons/truffle-share.png" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:site" content="Truffle Suite" />
+    <meta name="twitter:title" content="Truffle Suite | Documentation | Truffle | Debugging on IDE" />
+    <meta name="twitter:description" content="The Truffle suite of tools make dapp development easier and more consistent." />
+    <meta name="twitter:creator" content="Truffle Suite" />
+    <meta name="twitter:domain" content="trufflesuite.com" />
+    <meta name="twitter:image:src" content="https://truffleframework.com/img/favicons/truffle-share.png" />
+    
+    <meta name="google-site-verification" content="BSgPkMHzw7IxJTpEElNfD8ZZYPzXgOQiTVPzAxAG8-o" />
+
+      <title>Truffle Suite | Documentation | Truffle | Debugging on IDE</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Grand+Hotel|Open+Sans|Oswald|Varela+Round|Roboto+Condensed|Roboto+Mono" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/index.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" id="primaryNav">
+      <a class="navbar-brand current" href="/">
+        <img class="suite-logo" src="/img/truffle-logomark.svg" alt="Truffle Logo" />TRUFFLE SUITE
+      </a>
+    
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="suiteDropdown" href="#" data-toggle="dropdown">SUITE</a>
+    
+            <div class="dropdown-menu">
+              <a class="text-truffle" href="/truffle">
+                <img class="suite-logo" src="/img/truffle-logomark.svg" alt="Truffle Logo" /><span class="narrow">T</span>RUFFLE
+              </a>
+              <a class="text-ganache" href="/ganache">
+                <img class="suite-logo" src="/img/ganache-logomark.svg" alt="Ganache Logo" />Ganache
+              </a>
+              <a class="text-drizzle" href="/drizzle">
+                <img class="suite-logo" src="/img/drizzle-logomark.svg" alt="Drizzle Logo" />dri<span class="drizzle-z-skew-1">z</span><span class="drizzle-z-skew-2">z</span>le
+              </a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/docs">DOCS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tutorials">TUTORIALS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/boxes">BOXES</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/blog">BLOG</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/community">COMMUNITY</a>
+          </li>
+        </ul>
+      </div>
+    </nav>    
+    <main role="main" class="container-fluid">
+      <!--<div class="row pt-4 pb-4">
+        <div class="col">
+          <form>
+            <div class="row">
+              <div class="col">
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="🔍 Search">
+              </div>
+              <div class="col">
+                <select id="inputState" class="form-control">
+                  <option selected>4.1</option>
+                  <option>4.0.6</option>
+                  <option>4.0.5</option>
+                </select>
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-truffle">SEARCH</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>-->
+
+      <div class="row row-docs-main">
+        <aside class="col-lg-3 docs-sidebar" id="docsSidebar">
+          <h2 class="space-icon d-lg-none text-center" id="docsSidebarToggle"><i class="fas fa-book"></i> SEARCH &amp; CONTENTS</h2>
+        
+          <form class="mb-4" id="searchForm">
+            <div class="input-group">
+              <input type="text" class="form-control" id="searchInput" placeholder="Search">
+              <div class="input-group-append">
+                <button type="submit" class="btn btn-truffle">SEARCH</button>
+              </div>
+            </div>
+          </form>
+        
+          <a class="toggle-truffle" href="#truffleDocs" data-toggle="collapse">
+            <img class="suite-logo" src="/img/truffle-logomark.svg" alt="Truffle Logo" /><h2 class="text-truffle"><span class="narrow">T</span>RUFFLE</h2>
+          </a>
+        
+          <div class="collapse truffle" id="truffleDocs" data-parent="#docsSidebar">
+            <ul>
+              <a href="/docs/truffle/overview"><li>Overview</li></a>
+              <a href="/docs/truffle/quickstart"><li>Quickstart</li></a>
+            </ul>
+              <h3>Getting Started</h3>
+              <ul>
+                  <a href="/docs/truffle/getting-started/installation"><li>Installation</li></a>
+                  <a href="/docs/truffle/getting-started/creating-a-project"><li>Creating a Project</li></a>
+                  <a href="/docs/truffle/getting-started/truffle-boxes"><li>Truffle Boxes</li></a>
+                  <a href="/docs/truffle/getting-started/compiling-contracts"><li>Compiling Contracts</li></a>
+                  <a href="/docs/truffle/getting-started/running-migrations"><li>Running Migrations</li></a>
+                  <a href="/docs/truffle/getting-started/interacting-with-your-contracts"><li>Interacting with Your Contracts</li></a>
+                  <a href="/docs/truffle/getting-started/truffle-with-metamask"><li>Truffle with MetaMask</li></a>
+                  <a href="/docs/truffle/getting-started/package-management-via-ethpm"><li>Package Management via EthPM</li></a>
+                  <a href="/docs/truffle/getting-started/package-management-via-npm"><li>Package Management via NPM</li></a>
+                  <a href="/docs/truffle/getting-started/debugging-your-contracts"><li>Debugging Your Contracts</li></a>
+                  <a href="/docs/truffle/getting-started/using-truffle-develop-and-the-console"><li>Using Truffle Develop and The Console</li></a>
+                  <a href="/docs/truffle/getting-started/writing-external-scripts"><li>Writing External Scripts</li></a>
+                  <a href="/docs/truffle/getting-started/using-the-build-pipeline"><li>Using The Build Pipeline</li></a>
+              </ul>
+              <h3>Testing</h3>
+              <ul>
+                  <a href="/docs/truffle/testing/testing-your-contracts"><li>Testing Your Contracts</li></a>
+                  <a href="/docs/truffle/testing/writing-tests-in-javascript"><li>Writing Tests in JavaScript</li></a>
+                  <a href="/docs/truffle/testing/writing-tests-in-solidity"><li>Writing Tests in Solidity</li></a>
+                  <a href="/docs/truffle/testing/debugging-on-ide"><li>Debugging on IDE</li></a>
+              </ul>
+              <h3>Advanced</h3>
+              <ul>
+                  <a href="/docs/truffle/advanced/networks-and-app-deployment"><li>Networks and App Deployment</li></a>
+                  <a href="/docs/truffle/advanced/build-processes"><li>Build Processes</li></a>
+              </ul>
+              <h3>Reference</h3>
+              <ul>
+                  <a href="/docs/truffle/reference/choosing-an-ethereum-client"><li>Choosing an Ethereum Client</li></a>
+                  <a href="/docs/truffle/reference/configuration"><li>Configuration</li></a>
+                  <a href="/docs/truffle/reference/truffle-commands"><li>Truffle Commands</li></a>
+                  <a href="/docs/truffle/reference/contact-the-developers"><li>Contact The Developers</li></a>
+              </ul>
+          </div>
+        
+          <a class="toggle-ganache" href="#ganacheDocs" data-toggle="collapse">
+            <img class="suite-logo" src="/img/ganache-logomark.svg" alt="Ganache Logo" /><h2 class="text-ganache">Ganache</h2>
+          </a>
+          
+          <div class="collapse ganache" id="ganacheDocs" data-parent="#docsSidebar">
+            <ul>
+              <a href="/docs/ganache/overview"><li>Overview</li></a>
+              <a href="/docs/ganache/quickstart"><li>Quickstart</li></a>
+            </ul>
+          </div>
+        
+          <a class="toggle-drizzle" href="#drizzleDocs" data-toggle="collapse">
+            <img class="suite-logo" src="/img/drizzle-logomark.svg" alt="Drizzle Logo" /><h2 class="text-drizzle">dri<span class="drizzle-z-skew-1">z</span><span class="drizzle-z-skew-2">z</span>le</h2>
+          </a>
+          
+          <div class="collapse drizzle" id="drizzleDocs" data-parent="#docsSidebar">
+            <ul>
+              <a href="/docs/drizzle/overview"><li>Overview</li></a>
+              <a href="/docs/drizzle/quickstart"><li>Quickstart</li></a>
+            </ul>
+              <h3>Getting Started</h3>
+              <ul>
+                  <a href="/docs/drizzle/getting-started/using-an-existing-redux-store"><li>Using an Existing Redux Store</li></a>
+                  <a href="/docs/drizzle/getting-started/contract-interaction"><li>Contract Interaction</li></a>
+              </ul>
+              <h3>React</h3>
+              <ul>
+                  <a href="/docs/drizzle/react/react-integration"><li>React Integration</li></a>
+                  <a href="/docs/drizzle/react/react-components"><li>React Components</li></a>
+              </ul>
+              <h3>Reference</h3>
+              <ul>
+                  <a href="/docs/drizzle/reference/drizzle-options"><li>Drizzle Options</li></a>
+                  <a href="/docs/drizzle/reference/drizzle-state"><li>Drizzle State</li></a>
+                  <a href="/docs/drizzle/reference/how-data-stays-fresh"><li>How Data Stays Fresh</li></a>
+              </ul>
+          </div>
+        </aside>
+        <div class="col-lg-9 bd-light-cream docs-content">
+          
+    <h1 class="link-markdown">
+      <a href="#debugging-on-ide" name="debugging-on-ide"><i class="fas fa-link"></i></a>
+      Debugging on IDE
+    </h1>
+  <p><code>IDE</code>의 <code>Built-in Debugger</code>(내장된 디버거)를 사용하여 Javascript로 작성된 <code>Dapp</code>(Test Code) 디버깅</p>
+
+    <h2 class="link-markdown">
+      <a href="#prerequisites" name="prerequisites"><i class="fas fa-link"></i></a>
+      Prerequisites
+    </h2>
+  <p><a href="https://www.npmjs.com/get-npm">NPM Installation</a></p>
+
+    <h2 class="link-markdown">
+      <a href="#table-of-contents" name="table-of-contents"><i class="fas fa-link"></i></a>
+      Table of Contents
+    </h2>
+  <ol>
+<li><a href="#truffle-installation">Truffle Installation</a></li>
+<li><a href="#creating-a-metacoin-project">Creating a MetaCoin project</a></li>
+<li><a href="#creating-a-package-json-file">Creating a package.json file</a></li>
+<li><a href="#truffle-package-installation">Truffle Package Installation</a></li>
+<li><a href="#the-whole-shell-script">The Whole Shell Script</a></li>
+<li><a href="#on-intellij-or-webstorm-ide-ultimate-edition">On IntelliJ(or WebStorm) IDE Ultimate Edition</a></li>
+<li><a href="#using-openzeppelin">Using OpenZeppelin</a></li>
+<li><a href="#using-multisigwallet">Using MultiSigWallet</a></li>
+<li><a href="#on-visual-studio-code">On Visual Studio Code</a></li>
+</ol>
+
+    <h2 class="link-markdown">
+      <a href="#truffle-installation" name="truffle-installation"><i class="fas fa-link"></i></a>
+      Truffle Installation
+    </h2>
+  <ol>
+<li><p>Truffle을 npm을 사용하여 설치한다.</p>
+<pre><code class="lang-shell">npm install -g truffle
+</code></pre>
+</li>
+</ol>
+
+    <h2 class="link-markdown">
+      <a href="#creating-a-metacoin-project" name="creating-a-metacoin-project"><i class="fas fa-link"></i></a>
+      Creating a MetaCoin project
+    </h2>
+  <p>Truffle의 명령어를 실행하기 위해서는 Truffle project가 필요.
+<a href="/boxes">Truffle Boxes</a>를 사용하여 <a href="/boxes/metacoin">MetaCoin box</a>를 Truffle project로 사용.</p>
+<ol>
+<li><p>Create a new directory for your Truffle project:</p>
+<pre><code class="lang-shell">mkdir MetaCoin
+cd MetaCoin
+</code></pre>
+</li>
+<li><p>Download (&quot;unbox&quot;) the MetaCoin box:</p>
+<pre><code class="lang-shell">truffle unbox metacoin
+</code></pre>
+</li>
+</ol>
+<p class="alert alert-info">
+<strong>Note</strong>: 보다 자세한 내용을 위해 Truffle 공식 홈페이지의 <a href="https://truffleframework.com/docs/truffle/quickstart#creating-a-project">Creating a project</a> 참고.
+</p>
+
+
+
+    <h2 class="link-markdown">
+      <a href="#creating-a-package-json-file" name="creating-a-package-json-file"><i class="fas fa-link"></i></a>
+      Creating a package.json file
+    </h2>
+  <ol>
+<li><p>npm의 package를 사용하기 위해 package.json파일을 생성:</p>
+<pre><code class="lang-shell">npm init --yes
+</code></pre>
+</li>
+<li><p>package.json파일을 Commandline에서 수정하여 위해 json 패키지 설치:</p>
+<pre><code class="lang-shell">npm install -g json
+</code></pre>
+</li>
+</ol>
+
+    <h3 class="link-markdown">
+      <a href="#adding-test-script" name="adding-test-script"><i class="fas fa-link"></i></a>
+      Adding Test Script
+    </h3>
+     <p class="alert alert-info">
+   <strong>Note</strong>: OS별 <code>환경변수</code>의 차이로 각각 다른 Script 사용. Windows의 <code>Powershell</code>에서는 오류가 발생될 수 있으므로 <code>CMD</code>에서 수행 권장.
+   </p>
+
+<ol>
+<li><p>on Mac:</p>
+<pre><code class="lang-shell">json -I -f package.json -e this.scripts.test=&#39;&quot;node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK&quot;&#39;
+</code></pre>
+</li>
+<li><p>on Windows:</p>
+<pre><code class="lang-shell">json -I -f package.json -e this.scripts.test=&#39;&quot;node %NODE_DEBUG_OPTION% ./node_modules/truffle/build/cli.bundled.js test&quot;&#39;
+</code></pre>
+</li>
+</ol>
+<!-- on PowerShell
+Quoting Error
+
+```shell
+undefined:3
+this.scripts.test=node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK
+                       ^^^^^^^^^^^^^^^^^^
+
+SyntaxError: Unexpected identifier
+```
+
+
+
+
+[Error](#error-1)
+
+powershell 에서
+json -I -f package.json -e this.scripts.test='""node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK""'
+
+
+
+node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK
+입력
+
+```shell
+npm init
+...
+npm install truffle --save-dev
+```
+
+https://docs.npmjs.com/cli/init.html
+
+# Error
+
+## Error 1
+
+### MetaCoin
+```shell
+mkdir myproject && cd myproject
+truffle init
+```
+
+### Resolving naming conflicts on Windows
+
+powershell
+
+error 
+자세하게 적을 것인지 결정하기
+-->
+
+    <h2 class="link-markdown">
+      <a href="#truffle-package-installation" name="truffle-package-installation"><i class="fas fa-link"></i></a>
+      Truffle Package Installation
+    </h2>
+  <ol>
+<li><p>Npm을 통해 Truffle Package 설치:</p>
+<pre><code class="lang-shell">npm install truffle --save-dev
+</code></pre>
+<p class="alert alert-info">
+<strong>Note</strong>: IDE에서 디버깅하기 위해 필수로 필요.
+</p>
+
+
+</li>
+</ol>
+
+    <h2 class="link-markdown">
+      <a href="#the-whole-shell-script" name="the-whole-shell-script"><i class="fas fa-link"></i></a>
+      The Whole Shell Script
+    </h2>
+  <ol>
+<li><p>The Whole shell script:</p>
+<pre><code class="lang-shell">npm install -g truffle
+mkdir MetaCoin
+cd MetaCoin
+truffle unbox metacoin
+npm init --yes
+npm install -g json
+json -I -f package.json -e this.scripts.test=&#39;&quot;node %NODE_DEBUG_OPTION% ./node_modules/truffle/build/cli.bundled.js test&quot;&#39;
+npm install truffle --save-dev
+</code></pre>
+</li>
+<li><p>Mac에서는 아래 명령어를 추가로 실행하거나 Shell Script를 변경해서 실행:</p>
+<pre><code class="lang-shell">json -I -f package.json -e this.scripts.test=&#39;&quot;node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK&quot;&#39;
+</code></pre>
+</li>
+</ol>
+
+    <h2 class="link-markdown">
+      <a href="#on-intellij-or-webstorm-ide-ultimate-edition" name="on-intellij-or-webstorm-ide-ultimate-edition"><i class="fas fa-link"></i></a>
+      On IntelliJ(or WebStorm) IDE Ultimate Edition
+    </h2>
+     <p class="alert alert-info">
+   <strong>Note</strong>: <a href="https://medium.com/80trill/debugging-solidity-smart-contracts-inside-of-the-intellij-ide-5b97d857143d">Debugging Solidity Smart Contracts Inside of the IntelliJ IDE</a> Tutorial을 기반으로 작성. This tutorial is for the <code>paid version</code> of IntelliJ or WebStorm.
+   </p>
+
+<ol>
+<li><p><a href="https://www.jetbrains.com/idea/">Up-to-date installation of the IntelliJ (or WebStorm) IDE Ultimate Edition (Paid Version)</a></p>
+</li>
+<li><p>Truffle Project Open:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/bdb7380c.png" title="" alt="" />
+    
+  </p>
+<p><code>Or</code></p>
+<ul>
+<li>해당 디렉토리로 이동 후:<pre><code class="lang-shell">cd MetaCoin
+idea .
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Inside of edit configurations, you will need to create a new run/debug configuration:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/831c1780.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/fc096993.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/05c2b654.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/053f9c3a.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/e2c3a8f8.png" title="" alt="" />
+    
+  </p>
+</li>
+<li><p>Run the debugger with the following breakpoints and examine how it works:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/9421e817.png" title="" alt="" />
+    
+  </p>
+</li>
+<li><p>Debugger Console output:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/b01976cf.png" title="" alt="" />
+    
+  </p>
+</li>
+</ol>
+<!--
+...
+❯ 
+```
+npm init   
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help json` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install <pkg>` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (metacoin) 
+version: (1.0.0) 
+description: 
+entry point: (truffle-config.js) truffle.js
+test command: node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK
+git repository: 
+keywords: 
+author: jesoos
+license: (ISC) 
+```
+-->
+
+    <h2 class="link-markdown">
+      <a href="#using-openzeppelin" name="using-openzeppelin"><i class="fas fa-link"></i></a>
+      Using OpenZeppelin
+    </h2>
+  <ol>
+<li><p><a href="https://git-scm.com/download">Git Installation</a></p>
+<p class="alert alert-info">
+<strong>Note</strong>: npm install 시 사용됨.
+</p>
+</li>
+<li><p><a href="https://github.com/OpenZeppelin/openzeppelin-solidity">Source Code</a> Clone or download:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/cea76cf6.png" title="" alt="" />
+    
+   </p>
+</li>
+<li><p>File: <code>truffle-config.json</code> 내용 모두 주석처리</p>
+<p class="alert alert-info">
+<strong>Note</strong>: a built-in personal blockchain을 사용하기 위함.
+</p>
+
+<p class="alert alert-info">
+<strong>Note</strong>:  <code>Ganache</code> 등의 Ethereum clients를 사용할 경우 networks의 development 설정하여 사용. See the <a href="/docs/truffle/reference/configuration#networks">Configuration</a> section for more information.
+</p>
+</li>
+<li><p><code>npm install</code> 실행으로 package 설치:</p>
+<pre><code class="lang-shell">npm install
+</code></pre>
+<p class="alert alert-info">
+<strong>Note</strong>: <code>gyp ERR</code>가 발생되어도 디버깅에 지장없음.
+</p>
+</li>
+<li><p>Adding Test Script on a <code>./package.json</code> File:</p>
+<ul>
+<li><p>on Mac</p>
+<pre><code class="lang-javascript">  ...
+    &quot;scripts&quot;: {
+      &quot;test:debug&quot;: &quot;node $NODE_DEBUG_OPTION ./node_modules/.bin/truffle test $FILES --network $NETWORK&quot;,
+  ...
+</code></pre>
+</li>
+<li><p>on Windows</p>
+<pre><code class="lang-javascript">  ...
+    &quot;scripts&quot;: {
+      &quot;test:debug&quot;: &quot;node %NODE_DEBUG_OPTION% ./node_modules/.bin/truffle test&quot;,
+  ...
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<!--
+```shell
+C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master>npm install
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\string-width-dc0aeb14\package.json'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\string-width-dc0aeb14\index.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\string-width-dc0aeb14\license'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\symbol-observable-a3fc4c19\es\index.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\string-width-dc0aeb14\readme.md'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\symbol-observable-a3fc4c19\es\ponyfill.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\jscodeshift-82a894a9\docs\fonts\OpenSans-Bold-webfont.eot'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\mocha-a02499e2\bin\_mocha'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\base.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\checkbox.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\confirm.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\editor.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\fs-extra-8565299f\lib\mkdirs\index.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\expand.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\fs-extra-8565299f\lib\mkdirs\mkdirs-sync.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\fs-extra-8565299f\lib\mkdirs\mkdirs.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\input.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\fs-extra-8565299f\lib\mkdirs\win32.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\list.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\password.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\inquirer-a57a3e7f\lib\prompts\rawlist.js'
+npm WARN tar ENOENT: no such file or directory, lstat 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\fs-extra-8565299f\lib\move'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\solium-cd434319\test\lib\rules\array-declarations\fixed\ws-btw-op-clos.sol'
+npm WARN tar ENOENT: no such file or directory, lstat 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\solium-cd434319\test\lib'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\block-helper-missing.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\each.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\helper-missing.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\if.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\log.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\lookup.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\handlebars-a211f3e8\dist\amd\handlebars\helpers\with.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\webpack-cli-d98e727c\lib\migrate\noEmitOnErrorsPlugin\__testfixtures__\.editorconfig'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\webpack-cli-d98e727c\lib\migrate\noEmitOnErrorsPlugin\__testfixtures__\noEmitOnErrorsPlugin-0.input.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\webpack-cli-d98e727c\lib\migrate\noEmitOnErrorsPlugin\__testfixtures__\noEmitOnErrorsPlugin-1.input.js'
+npm WARN tar ENOENT: no such file or directory, open 'C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\.staging\webpack-cli-d98e727c\lib\migrate\noEmitOnErrorsPlugin\__testfixtures__\noEmitOnErrorsPlugin-2.input.js'
+```
+
+
+C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\scrypt>if not defined npm_config_node_gyp (node "C:\Users\roisun\AppData\Roaming\npm\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild )  else (node "C:\Users\roisun\AppData\Roaming\npm\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild )
+gyp ERR! configure error
+gyp ERR! stack Error: Can't find Python executable "python", you can set the PYTHON env variable.
+gyp ERR! stack     at PythonFinder.failNoPython (C:\Users\roisun\AppData\Roaming\npm\node_modules\npm\node_modules\node-gyp\lib\configure.js:484:19)
+gyp ERR! stack     at PythonFinder.<anonymous> (C:\Users\roisun\AppData\Roaming\npm\node_modules\npm\node_modules\node-gyp\lib\configure.js:509:16)
+gyp ERR! stack     at C:\Users\roisun\AppData\Roaming\npm\node_modules\npm\node_modules\graceful-fs\polyfills.js:284:29
+gyp ERR! stack     at FSReqWrap.oncomplete (fs.js:154:21)
+gyp ERR! System Windows_NT 10.0.17134
+gyp ERR! command "C:\\Program Files\\nodejs\\node.exe" "C:\\Users\\roisun\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\node-gyp\\bin\\node-gyp.js" "rebuild"
+gyp ERR! cwd C:\Users\roisun\openzeppelin-solidity-master\openzeppelin-solidity-master\node_modules\scrypt
+gyp ERR! node -v v10.13.0
+gyp ERR! node-gyp -v v3.8.0
+gyp ERR! not ok
+npm WARN webpack-cli@2.1.5 requires a peer of webpack@^4.0.0 but none is installed. You must install peer dependencies yourself.
+npm WARN optional SKIPPING OPTIONAL DEPENDENCY: fsevents@1.2.4 (node_modules\fsevents):
+npm WARN notsup SKIPPING OPTIONAL DEPENDENCY: Unsupported platform for fsevents@1.2.4: wanted {"os":"darwin","arch":"any"} (current: {"os":"win32","arch":"x64"})
+
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! scrypt@6.0.3 install: `node-gyp rebuild`
+npm ERR! Exit status 1
+npm ERR!
+npm ERR! Failed at the scrypt@6.0.3 install script.
+npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     C:\Users\roisun\AppData\Roaming\npm-cache\_logs\2018-11-21T10_07_31_276Z-debug.log
+
+위와 같은 에러가 발생이 되어도 디버깅에 문제는 없음
+-->
+
+    <h2 class="link-markdown">
+      <a href="#using-multisigwallet" name="using-multisigwallet"><i class="fas fa-link"></i></a>
+      Using MultiSigWallet
+    </h2>
+  <ol>
+<li><p><a href="https://github.com/gnosis/MultiSigWallet">Source Code</a> Clone or download:
+ 
+    <img class="img-fluid" src=".debugging-on-ide_images1/7fd06a58.png" title="" alt="" />
+    
+   </p>
+</li>
+<li><p>Npm의 truffle package를 최신 버전으로 재설치</p>
+<pre><code class="lang-shell">npm install truffle@latest --save-dev
+</code></pre>
+<p class="alert alert-info">
+<strong>Note</strong>: 과거 버전인 경우 a built-in personal blockchain 사용이 안 될 수 있음.
+</p>
+</li>
+<li><p>나머지 과정은 <a href="#using-openzeppelin">Using OpenZeppelin</a>과 동일</p>
+</li>
+</ol>
+<!--
+npm uninstall *
+> 이걸로 모두 제거 되지 않았음
+
+for package in `ls node_modules`; do npm uninstall $package; done;
+https://stackoverflow.com/questions/19106284/how-do-you-uninstall-all-dependencies-listed-in-package-json-npm
+
+
+
+
+npm ls -g --depth=0
+-->
+
+    <h2 class="link-markdown">
+      <a href="#on-visual-studio-code" name="on-visual-studio-code"><i class="fas fa-link"></i></a>
+      On Visual Studio Code
+    </h2>
+  <ol>
+<li><p><a href="https://code.visualstudio.com/">Up-to-date installation of the Visual Studio Code</a></p>
+</li>
+<li><p>Truffle Project Open:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/a40b86db.png" title="" alt="" />
+    
+  
+<code>Or</code></p>
+<ul>
+<li>해당 디렉토리로 이동 후:<pre><code class="lang-shell">cd MetaCoin
+code .
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Debug (Ctrl+Shift+X) 버튼 클릭:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/e6994d61.png" title="" alt="" />
+    
+  </p>
+</li>
+<li><p>톱니바퀴 모양 클릭(Configure or Fix <code>launch.json</code>) 후 Node.js 선택: 
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/ec464943.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/056c3055.png" title="" alt="" />
+    
+  </p>
+</li>
+<li><p>File: launch.json에 아래 코드 추가:</p>
+<pre><code class="lang-javascript">        {
+            &quot;name&quot;: &quot;run tests&quot;,
+            &quot;type&quot;: &quot;node&quot;,
+            &quot;request&quot;: &quot;launch&quot;,
+            &quot;program&quot;: &quot;${workspaceRoot}/node_modules/truffle/build/cli.bundled.js&quot;,
+            &quot;args&quot;: [&quot;test&quot;],
+            &quot;cwd&quot;: &quot;${workspaceRoot}&quot;,
+            &quot;outFiles&quot;: [
+                &quot;${workspaceRoot}/test/**/*&quot;
+            ]
+        }
+</code></pre>
+</li>
+<li><p>Run the debugger with the following breakpoints and examine how it works And Debugger Console output:
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/d1be7a58.png" title="" alt="" />
+    
+  
+
+    <img class="img-fluid" src=".debugging-on-ide_images1/3f988697.png" title="" alt="" />
+    
+  </p>
+</li>
+</ol>
+
+
+          <div class="contribute-link">
+            See a way to make this page better? <a href="https://github.com/trufflesuite/trufflesuite.com/edit/master/src/docs/truffle/testing">Edit here &raquo;</a>
+          </div>        </div>
+      </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/js/vendor/jquery-3.2.1.slim.min.js"><\/script>')</script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/vendor/prism.js"></script>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="/js/docs.js"></script>
+    <script src="https://unpkg.com/lunr/lunr.js"></script>
+    <script src="/js/docs-search.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-83874933-3', 'auto');
+      ga('send', 'pageview');
+    </script>  </body>
+</html>
